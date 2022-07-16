@@ -1,5 +1,5 @@
 -- stage do arquivo RELATORIO_DTB_BRASIL_SUBDISTRITO.xls
-CREATE TABLE IF NOT EXISTS stg_rdb_subdistrito (
+CREATE TABLE IF NOT EXISTS stg.stg_rdb_subdistrito (
     UF                                      CHAR(2)
     , NOME_UF                               VARCHAR(20)
     , REGIAO_GEOGRAFICA_INTERMEDIARIA       CHAR(4)

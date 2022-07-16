@@ -1,5 +1,5 @@
 -- stage do arquivo RELATORIO_DTB_BRASIL_MUNICIPIO.xls
-CREATE TABLE IF NOT EXISTS stg_rdb_municipio (
+CREATE TABLE IF NOT EXISTS stg.stg_rdb_municipio (
     UF                                      CHAR(2)
     , NOME_UF                               VARCHAR(20)
     , REGIAO_GEOGRAFICA_INTERMEDIARIA       CHAR(4)
