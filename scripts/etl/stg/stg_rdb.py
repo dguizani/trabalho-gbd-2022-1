@@ -3,7 +3,7 @@ import pandas as pd
 from dw_tools import dw_tools as dwt
 
 
-def extract_stg_rdb_distrito(
+def extract_stg_rdb(
     file_input: str,
     table_name: str,
     conn_output: dwt.sa.engine.Engine
@@ -18,7 +18,7 @@ def extract_stg_rdb_distrito(
     return tbl, columns
 
 
-def treat_stg_rdb_distrito(
+def treat_stg_rdb(
     tbl: pd.DataFrame,
     columns: list[str]
 ):
@@ -35,7 +35,7 @@ def treat_stg_rdb_distrito(
     return tbl_treat[columns]
 
 
-def load_stg_rdb_distrito(
+def load_stg_rdb(
     tbl: pd.DataFrame,
     table_name: str,
     conn_output: dwt.sa.engine.Engine
@@ -53,24 +53,23 @@ def load_stg_rdb_distrito(
         )
 
 
-def run_stg_rdb_distrito(
+def run_stg_rdb(
     conn_output: dwt.sa.engine.Engine,
+    table_name: str,
     file_input: str
 ):
-    table_name = "stg_rdb_distrito"
-
-    tbl_extract, columns = extract_stg_rdb_distrito(
+    tbl_extract, columns = extract_stg_rdb(
         file_input=file_input,
         table_name=table_name,
         conn_output=conn_output
     )
 
-    tbl_treat = treat_stg_rdb_distrito(
+    tbl_treat = treat_stg_rdb(
         tbl=tbl_extract,
         columns=columns
     )
 
-    load_stg_rdb_distrito(
+    load_stg_rdb(
         tbl=tbl_treat,
         table_name=table_name,
         conn_output=conn_output
@@ -78,8 +77,6 @@ def run_stg_rdb_distrito(
 
 
 if __name__ == "__main__":
-    file_input = "../../../origin/RELATORIO_DTB_BRASIL_DISTRITO.xls"
-
     conn_stg = dwt.connect_mysql(
         username="root",
         password="1234",
@@ -88,7 +85,20 @@ if __name__ == "__main__":
         port=33033
     )
 
-    run_stg_rdb_distrito(
-        conn_output=conn_stg,
-        file_input=file_input
+    run_stg_rdb(
+        file_input="../../../origin/RELATORIO_DTB_BRASIL_DISTRITO.xls",
+        table_name="stg_rdb_distrito",
+        conn_output=conn_stg
+    )
+
+    run_stg_rdb(
+        file_input="../../../origin/RELATORIO_DTB_BRASIL_MUNICIPIO.xls",
+        table_name="stg_rdb_municipio",
+        conn_output=conn_stg
+    )
+
+    run_stg_rdb(
+        file_input="../../../origin/RELATORIO_DTB_BRASIL_SUBDISTRITO.xls",
+        table_name="stg_rdb_subdistrito",
+        conn_output=conn_stg
     )

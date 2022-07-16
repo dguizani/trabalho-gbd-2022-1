@@ -1,7 +1,7 @@
 from dw_tools import dw_tools as dwt
 
 from scripts.etl.stg.stg_influd import run_stg_influd
-from scripts.etl.stg.stg_rdb_distrito import run_stg_rdb_distrito
+from scripts.etl.stg.stg_rdb import run_stg_rdb
 
 
 def config_stg_influd(first_y, last_y):
@@ -13,8 +13,7 @@ def config_stg_influd(first_y, last_y):
     return files_input
 
 
-def main(
-    conn_dw: dwt.sa.engine.Engine,
+def run_stg(
     conn_stg: dwt.sa.engine.Engine
 ):
     run_stg_influd(
@@ -22,10 +21,30 @@ def main(
         conn_output=conn_stg
     )
 
-    run_stg_rdb_distrito(
+    run_stg_rdb(
         file_input="./origin/RELATORIO_DTB_BRASIL_DISTRITO.xls",
+        table_name="stg_rdb_distrito",
         conn_output=conn_stg
     )
+
+    run_stg_rdb(
+        file_input="./origin/RELATORIO_DTB_BRASIL_MUNICIPIO.xls",
+        table_name="stg_rdb_municipio",
+        conn_output=conn_stg
+    )
+
+    run_stg_rdb(
+        file_input="./origin/RELATORIO_DTB_BRASIL_SUBDISTRITO.xls",
+        table_name="stg_rdb_subdistrito",
+        conn_output=conn_stg
+    )
+
+
+def main(
+    conn_dw: dwt.sa.engine.Engine,
+    conn_stg: dwt.sa.engine.Engine
+):
+    run_stg(conn_stg)
 
 
 if __name__ == "__main__":
@@ -45,9 +64,4 @@ if __name__ == "__main__":
         port=33033
     )
 
-    # main(conn_dw, conn_stg)
-
-    run_stg_rdb_distrito(
-        file_input="./origin/RELATORIO_DTB_BRASIL_DISTRITO.xls",
-        conn_output=conn_stg
-    )
+    main(conn_dw, conn_stg)
