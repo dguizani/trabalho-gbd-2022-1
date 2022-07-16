@@ -1,12 +1,12 @@
 -- stage do arquivo INFLUD18.csv
-CREATE TABLE IF NOT EXISTS stg_influd_18 (
-    DT_NOTIFIC      TIMESTAMP
+CREATE TABLE IF NOT EXISTS stg.stg_influd_18 (
+    DT_NOTIFIC      DATE
     , ID_MUNICIP    CHAR(6)
     , SEM_NOT       CHAR(6)
     , NU_ANO        CHAR(4)
     , SG_UF_NOT     CHAR(2)
-    , DT_SIN_PRI    TIMESTAMP
-    , DT_NASC       TIMESTAMP
+    , DT_SIN_PRI    DATE
+    , DT_NASC       DATE
     , NU_IDADE_N    CHAR(4)
     , CS_SEXO       CHAR(1)
     , CS_GESTANT    CHAR(3)
@@ -38,26 +38,26 @@ CREATE TABLE IF NOT EXISTS stg_influd_18 (
     , OUT_MORBI     CHAR(3)
     , MORB_DESC     VARCHAR(30)
     , HOSPITAL      CHAR(3)
-    , DT_INTERNA    TIMESTAMP
+    , DT_INTERNA    DATE
     , CO_UF_INTE    CHAR(4)
     , CO_MU_INTE    CHAR(8)
-    , DT_PCR        TIMESTAMP
+    , DT_PCR        DATE
     , PCR_AMOSTR    CHAR(1)
     , PCR_OUT       CHAR(1)
     , PCR_RES       CHAR(1)
     , PCR_ETIOL     CHAR(1)
     , PCR_TIPO_H    CHAR(1)
     , PCR_TIPO_N    CHAR(1)
-    , DT_CULTURA    TIMESTAMP
+    , DT_CULTURA    DATE
     , CULT_AMOST    CHAR(1)
     , CULT_OUT      CHAR(1)
     , CULT_RES      CHAR(1)
-    , DT_HEMAGLU    TIMESTAMP
+    , DT_HEMAGLU    DATE
     , HEMA_RES      CHAR(1)
     , HEMA_ETIOL    CHAR(1)
     , HEM_TIPO_H    CHAR(1)
     , HEM_TIPO_N    CHAR(1)
-    , DT_RAIOX      TIMESTAMP
+    , DT_RAIOX      DATE
     , RAIOX_RES     CHAR(3)
     , RAIOX_OUT     VARCHAR(30)
     , CLASSI_FIN    CHAR(3)
@@ -66,22 +66,22 @@ CREATE TABLE IF NOT EXISTS stg_influd_18 (
     , TPAUTOCTO     CHAR(1)
     , DOENCA_TRA    CHAR(1)
     , EVOLUCAO      CHAR(3)
-    , DT_OBITO      TIMESTAMP
-    , DT_ENCERRA    TIMESTAMP
-    , DT_DIGITA     TIMESTAMP
+    , DT_OBITO      DATE
+    , DT_ENCERRA    DATE
+    , DT_DIGITA     DATE
     , OBES_IMC      CHAR(4)
     , OUT_AMOST     VARCHAR(30)
     , DS_OAGEETI    VARCHAR(30)
     , DS_OUTMET     VARCHAR(30)
     , DS_OUTSUB     VARCHAR(9)
     , OUT_ANTIV     VARCHAR(30)
-    , DT_COLETA     TIMESTAMP
-    , DT_ENTUTI     TIMESTAMP
-    , DT_ANTIVIR    TIMESTAMP
-    , DT_IFI        TIMESTAMP
-    , DT_OUTMET     TIMESTAMP
-    , DT_PCR_1      TIMESTAMP
-    , DT_SAIDUTI    TIMESTAMP
+    , DT_COLETA     DATE
+    , DT_ENTUTI     DATE
+    , DT_ANTIVIR    DATE
+    , DT_IFI        DATE
+    , DT_OUTMET     DATE
+    , DT_PCR_1      DATE
+    , DT_SAIDUTI    DATE
     , RES_ADNO      CHAR(3)
     , AMOSTRA       CHAR(3)
     , HEPATICA      CHAR(3)
