@@ -41,3 +41,16 @@ def remove_multiples_spaces(
 
     return comp.sub(str(string), " ")
 
+
+def treat_column_name(
+    column_name: tp.Any
+):
+    treat_name = ud.unidecode(
+        remove_multiples_spaces(
+            str(column_name)
+                .strip(" ")
+                .replace(" ", "_")
+        )
+    )
+
+    return treat_name
