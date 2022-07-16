@@ -42,7 +42,7 @@ def get_columns_db(
 
     cursor = conn.execute(query)
 
-    return cursor.keys()
+    return [k for k in cursor.keys()]
 
 
 def remove_multiples_spaces(
@@ -52,18 +52,16 @@ def remove_multiples_spaces(
 
     comp = re.compile(pattern)
 
-    return comp.sub(str(string), " ")
+    return comp.sub(" ", str(string))
 
 
 def treat_column_name(
     column_name: tp.Any
 ):
     treat_name = ud.unidecode(
-        remove_multiples_spaces(
-            str(column_name)
-                .strip(" ")
-                .replace(" ", "_")
-        )
+        remove_multiples_spaces(column_name)
+            .strip()
+            .replace(" ", "_")
     )
 
     return treat_name
