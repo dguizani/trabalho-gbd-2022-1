@@ -7,7 +7,7 @@ def connect_mysql(
     database: str,
     server: str,
     port: int
-) -> sa.engine.Connection:
+) -> sa.engine.Engine:
     url = f"mysql+pymysql://{username}:{password}@{server}:{port}/{database}"
 
-    return sa.create_engine(url=url).connect()
+    return sa.create_engine(url=url)
