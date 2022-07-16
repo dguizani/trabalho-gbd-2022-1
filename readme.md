@@ -2,7 +2,7 @@
 
 **Version:** `3.9.12`
 
-### `venv` Use In `git bash` Windows
+### Use `venv` In `git bash` On Windows
 
 **Installation**
 `C:/python/3.9.12_x64/python.exe -m venv venv`
