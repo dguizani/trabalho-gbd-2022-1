@@ -1,6 +1,7 @@
 from dw_tools import dw_tools as dwt
 
 from scripts.etl.stg.stg_influd import run_stg_influd
+from scripts.etl.stg.stg_rdb_distrito import run_stg_rdb_distrito
 
 
 def config_stg_influd(first_y, last_y):
@@ -18,6 +19,11 @@ def main(
 ):
     run_stg_influd(
         files_input=config_stg_influd(13, 18),
+        conn_output=conn_stg
+    )
+
+    run_stg_rdb_distrito(
+        file_input="./origin/RELATORIO_DTB_BRASIL_DISTRITO.xls",
         conn_output=conn_stg
     )
 
@@ -39,4 +45,9 @@ if __name__ == "__main__":
         port=33033
     )
 
-    main(conn_dw, conn_stg)
+    # main(conn_dw, conn_stg)
+
+    run_stg_rdb_distrito(
+        file_input="./origin/RELATORIO_DTB_BRASIL_DISTRITO.xls",
+        conn_output=conn_stg
+    )
