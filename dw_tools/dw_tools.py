@@ -17,6 +17,19 @@ def connect_mysql(
     return sa.create_engine(url=url)
 
 
+def has_record_in_table(
+    conn: sa.engine.Engine,
+    table_name: str,
+):
+    query = f"""
+        SELECT 1
+        FROM {table_name}
+        LIMIT 1
+    """
+
+    return conn.execute(query).fetchone() is not None
+
+
 def get_columns_db(
     conn: sa.engine.Engine,
     table_name: str
