@@ -4,20 +4,14 @@ from scripts.etl.stg.stg_influd import run_stg_influd
 from scripts.etl.stg.stg_rdb import run_stg_rdb
 
 
-def config_stg_influd(first_y, last_y):
-    files_input = [
-        (f"./origin/INFLUD{y:02}.csv", f"{y:02}")
-        for y in range(first_y, last_y + 1)
-    ]
-
-    return files_input
-
-
 def run_stg(
     conn_stg: dwt.sa.engine.Engine
 ):
     run_stg_influd(
-        files_input=config_stg_influd(13, 18),
+        files_input=[
+            (f"./origin/INFLUD{y:02}.csv", f"{y:02}")
+            for y in range(13, 18 + 1)
+        ],
         conn_output=conn_stg
     )
 
