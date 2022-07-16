@@ -1,4 +1,8 @@
+import typing as tp
+
 import sqlalchemy as sa
+import unidecode as ud
+import re as re
 
 
 def connect_mysql(
@@ -26,3 +30,14 @@ def get_columns_db(
     cursor = conn.execute(query)
 
     return cursor.keys()
+
+
+def remove_multiples_spaces(
+    string: str
+):
+    pattern = r"[ ]{2,}"
+
+    comp = re.compile(pattern)
+
+    return comp.sub(str(string), " ")
+
