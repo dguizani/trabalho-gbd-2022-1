@@ -48,10 +48,6 @@ def treat_stg_influd(
         ) for tbl in list_tbl
     ]
 
-    for tbl in l_tbl:
-        if hasattr(tbl, "DT_UT_DOSE"):
-            tbl["DT_UT_DOSE"] = pd.to_datetime(tbl.DT_UT_DOSE, format="%d/%m/%Y")
-
     return l_tbl
 
 

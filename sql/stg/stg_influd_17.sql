@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS stg.stg_influd_17 (
     , ID_MN_RESI    CHAR(6)
     , ID_OCUPA_N    CHAR(1)
     , VACINA        CHAR(3)
-    , DT_UT_DOSE    DATE
     , FEBRE         CHAR(3)
     , TOSSE         CHAR(3)
     , CALAFRIO      CHAR(1)
