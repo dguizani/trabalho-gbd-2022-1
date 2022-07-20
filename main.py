@@ -15,23 +15,16 @@ def run_stg(
         conn_output=conn_stg
     )
 
-    run_stg_rdb(
-        file_input="./origin/RELATORIO_DTB_BRASIL_DISTRITO.xls",
-        table_name="stg_rdb_distrito",
-        conn_output=conn_stg
-    )
-
-    run_stg_rdb(
-        file_input="./origin/RELATORIO_DTB_BRASIL_MUNICIPIO.xls",
-        table_name="stg_rdb_municipio",
-        conn_output=conn_stg
-    )
-
-    run_stg_rdb(
-        file_input="./origin/RELATORIO_DTB_BRASIL_SUBDISTRITO.xls",
-        table_name="stg_rdb_subdistrito",
-        conn_output=conn_stg
-    )
+    for f_path, t_name in [
+        ("./origin/RELATORIO_DTB_BRASIL_DISTRITO.xls", "stg_rdb_distrito"),
+        ("./origin/RELATORIO_DTB_BRASIL_MUNICIPIO.xls", "stg_rdb_municipio"),
+        ("./origin/RELATORIO_DTB_BRASIL_SUBDISTRITO.xls", "stg_rdb_subdistrito")
+    ]:
+        run_stg_rdb(
+            file_input=f_path,
+            table_name=t_name,
+            conn_output=conn_stg
+        )
 
 
 def main(
