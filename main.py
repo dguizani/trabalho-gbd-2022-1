@@ -2,6 +2,11 @@ from dw_tools import dw_tools as dwt
 
 from scripts.etl.stg.stg_influd import run_stg_influd
 from scripts.etl.stg.stg_rdb import run_stg_rdb
+from scripts.etl.dw.d_local import run_d_local
+from scripts.etl.dw.d_paciente import run_d_paciente
+from scripts.etl.dw.d_data import run_d_data
+from scripts.etl.dw.d_tipo_morbidade import run_d_tipo_morbidade
+from scripts.etl.dw.d_tipo_sintoma import run_d_tipo_sintoma
 
 
 def run_stg(
@@ -27,11 +32,25 @@ def run_stg(
         )
 
 
+def run_dw(conn_stg, conn_dw):
+    run_d_local(conn_stg, conn_dw)
+
+    run_d_paciente(conn_stg, conn_dw)
+
+    run_d_data(conn_stg, conn_dw)
+
+    run_d_tipo_morbidade(conn_dw)
+
+    run_d_tipo_sintoma(conn_dw)
+
+
 def main(
     conn_dw: dwt.sa.engine.Engine,
     conn_stg: dwt.sa.engine.Engine
 ):
-    run_stg(conn_stg)
+    # run_stg(conn_stg)
+
+    run_dw(conn_stg, conn_dw)
 
 
 if __name__ == "__main__":
