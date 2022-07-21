@@ -8,11 +8,11 @@ def extract_d_data(
 ):
     query = """
         WITH stg_influd AS (
-            SELECT * FROM stg_influd_13 UNION
-            SELECT * FROM stg_influd_14 UNION
-            SELECT * FROM stg_influd_15 UNION
-            SELECT * FROM stg_influd_16 UNION
-            SELECT * FROM stg_influd_17 UNION
+            SELECT * FROM stg_influd_13 UNION ALL
+            SELECT * FROM stg_influd_14 UNION ALL
+            SELECT * FROM stg_influd_15 UNION ALL
+            SELECT * FROM stg_influd_16 UNION ALL
+            SELECT * FROM stg_influd_17 UNION ALL
             SELECT * FROM stg_influd_18
         )
         SELECT MAX(dt.dt_completa)

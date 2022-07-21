@@ -4,7 +4,7 @@ from dw_tools import dw_tools as dwt
 
 
 def extract_d_tipo_morbidade():
-    sintomas = [
+    morbidades = [
         "PNEUMATOPATIA CRÔNICA",
         "DOENÇA CARDIOVASCULAR CRÔNICA",
         "DOENÇA HEPÁTICA",
@@ -18,7 +18,7 @@ def extract_d_tipo_morbidade():
     ]
 
     df = pd.DataFrame({
-        "ds_tipo_sintoma": sintomas
+        "ds_tipo_morbidade": morbidades
     })
 
     return df
@@ -28,10 +28,10 @@ def treat_d_tipo_morbidade(
     tbl: pd.DataFrame
 ):
     tbl_ = tbl.assign(
-        sk_tipo_sintoma=lambda df: range(1, df.shape[0] + 1)
+        sk_tipo_morbidade=lambda df: range(1, df.shape[0] + 1)
     ).astype({
-        "sk_tipo_sintoma": "int64",
-        "ds_tipo_sintoma": "string"
+        "sk_tipo_morbidade": "int64",
+        "ds_tipo_morbidade": "string"
     })
 
     return tbl_

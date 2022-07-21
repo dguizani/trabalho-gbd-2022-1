@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS dw. (
-    sk_tipo_sintoma     INTEGER
-    , ds_tipo_sintoma   VARCHAR(50)
+CREATE TABLE IF NOT EXISTS dw.d_tipo_sintoma (
+    SK_TIPO_SINTOMA     INTEGER
+    , DS_TIPO_SINTOMA   VARCHAR(50)
 )
