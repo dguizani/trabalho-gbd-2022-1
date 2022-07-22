@@ -1,5 +1,7 @@
 import pandas as pd
 
+import datetime as dt
+
 from dw_tools import dw_tools as dwt
 
 
@@ -46,6 +48,19 @@ def treat_d_data(
         nu_mes=lambda df: df.dt_completa.dt.month,
         nu_dia=lambda df: df.dt_completa.dt.day,
     )
+
+    default_values = {
+        "sk_data": [-1],
+        "dt_completa": [dt.datetime(1, 1, 1)],
+        "nu_ano": [-1],
+        "nu_mes": [-1],
+        "nu_dia": [-1]
+    }
+
+    tbl_ = pd.concat([
+        pd.DataFrame(default_values),
+        tbl_
+    ])
 
     return tbl_
 

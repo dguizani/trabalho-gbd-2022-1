@@ -36,6 +36,19 @@ def treat_d_local(
         "ds_municipio": "string"
     })
 
+    default_values = {
+        "sk_local": [-1],
+        "cd_uf": [-1],
+        "ds_uf": ["Não Informado"],
+        "cd_municipio": [-1],
+        "ds_municipio": ["Não Informado"]
+    }
+
+    tbl_ = pd.concat([
+        pd.DataFrame(default_values),
+        tbl_
+    ])
+
     return tbl_
 
 

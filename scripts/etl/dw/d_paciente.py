@@ -72,6 +72,24 @@ def treat_d_paciente(
         "ds_evolucao": "string"
     })
 
+    default_values = {
+        "sk_paciente": [-1],
+        "nu_idade_deduzida": [-1],
+        "cd_raca": [-1],
+        "cd_evolucao": [-1],
+        "cd_vacinado": [-1],
+        "cd_sexo": ["I"],
+        "ds_sexo": ["Não Informado"],
+        "ds_raca": ["Não Informado"],
+        "fl_vacinado": ["Não Informado"],
+        "ds_evolucao": ["Não Informado"]
+    }
+
+    tbl_ = pd.concat([
+        pd.DataFrame(default_values),
+        tbl_
+    ])
+
     return tbl_
 
 

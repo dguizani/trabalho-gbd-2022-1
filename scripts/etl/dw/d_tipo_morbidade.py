@@ -34,6 +34,16 @@ def treat_d_tipo_morbidade(
         "ds_tipo_morbidade": "string"
     })
 
+    default_values = {
+        "sk_tipo_morbidade": [-1],
+        "ds_tipo_morbidade": ["Não Informado"],
+    }
+
+    tbl_ = pd.concat([
+        pd.DataFrame(default_values),
+        tbl_
+    ])
+
     return tbl_
 
 

@@ -33,6 +33,16 @@ def treat_d_tipo_sintoma(
         "ds_tipo_sintoma": "string"
     })
 
+    default_values = {
+        "sk_tipo_sintoma": [-1],
+        "ds_tipo_sintoma": ["Não Informado"],
+    }
+
+    tbl_ = pd.concat([
+        pd.DataFrame(default_values),
+        tbl_
+    ])
+
     return tbl_
 
 
