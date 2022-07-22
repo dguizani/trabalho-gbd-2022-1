@@ -8,4 +8,6 @@ CREATE TABLE IF NOT EXISTS dw.f_notificacao_doenca (
     , sk_data_primeiros_sintomas    INTEGER
     , sk_data_internacao            INTEGER
     , sk_data_raiox                 INTEGER
+    , qtt_sintomas                  INTEGER
+    , qtt_morbidades                INTEGER
 )

@@ -34,15 +34,15 @@ def run_stg(
 
 
 def run_dw(conn_stg, conn_dw):
-    run_d_local(conn_stg, conn_dw)
+    # run_d_local(conn_stg, conn_dw)
 
-    run_d_paciente(conn_stg, conn_dw)
+    # run_d_paciente(conn_stg, conn_dw)
 
-    run_d_data(conn_stg, conn_dw)
+    # run_d_data(conn_stg, conn_dw)
 
-    run_d_tipo_morbidade(conn_dw)
+    # run_d_tipo_morbidade(conn_dw)
 
-    run_d_tipo_sintoma(conn_dw)
+    # run_d_tipo_sintoma(conn_dw)
 
     run_f_notificacao_doenca(conn_stg, conn_dw)
 
@@ -51,7 +51,7 @@ def main(
     conn_dw: dwt.sa.engine.Engine,
     conn_stg: dwt.sa.engine.Engine
 ):
-    run_stg(conn_stg)
+    # run_stg(conn_stg)
 
     run_dw(conn_stg, conn_dw)
 
