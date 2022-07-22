@@ -54,17 +54,17 @@ def extract_f_notificacao_doenca(
             , IF(IFNULL(diarreia, '9') = '9', '0', diarreia) * 1 AS diarreia
             , IF(IFNULL(outro_sin, '9') = '9', '0', outro_sin) * 1 AS outro_sin
             -- Morbidade
-            , IF(IFNULL(pneumopati, '9') = '9', 0, pneumopati) * 1 AS pneumopati
-            , IF(IFNULL(cardiopati, '9') = '9', 0, cardiopati) * 1 AS cardiopati
-            , IF(IFNULL(imunodepre, '9') = '9', 0, imunodepre) * 1 AS imunodepre
-            , IF(IFNULL(hepatica, '9') = '9', 0, hepatica) * 1 AS hepatica
-            , IF(IFNULL(neurologic, '9') = '9', 0, neurologic) * 1 AS neurologic
-            , IF(IFNULL(renal, '9') = '9', 0, renal) * 1 AS renal
-            , IF(IFNULL(sind_down, '9') = '9', 0, sind_down) * 1 AS sind_down
-            , IF(IFNULL(metabolica, '9') = '9', 0, metabolica) * 1 AS metabolica
-            , IF(IFNULL(puerpera, '9') = '9', 0, puerpera) * 1 AS puerpera
-            , IF(IFNULL(obesidade, '9') = '9', 0, obesidade) * 1 AS obesidade
-            , IF(IFNULL(out_morbi, '9') = '9', 0, out_morbi) * 1 AS out_morbi
+            , IF(IFNULL(pneumopati, '9') = '9', '0', pneumopati) * 1 AS pneumopati
+            , IF(IFNULL(cardiopati, '9') = '9', '0', cardiopati) * 1 AS cardiopati
+            , IF(IFNULL(imunodepre, '9') = '9', '0', imunodepre) * 1 AS imunodepre
+            , IF(IFNULL(hepatica, '9') = '9', '0', hepatica) * 1 AS hepatica
+            , IF(IFNULL(neurologic, '9') = '9', '0', neurologic) * 1 AS neurologic
+            , IF(IFNULL(renal, '9') = '9', '0', renal) * 1 AS renal
+            , IF(IFNULL(sind_down, '9') = '9', '0', sind_down) * 1 AS sind_down
+            , IF(IFNULL(metabolica, '9') = '9', '0', metabolica) * 1 AS metabolica
+            , IF(IFNULL(puerpera, '9') = '9', '0', puerpera) * 1 AS puerpera
+            , IF(IFNULL(obesidade, '9') = '9', '0', obesidade) * 1 AS obesidade
+            , IF(IFNULL(out_morbi, '9') = '9', '0', out_morbi) * 1 AS out_morbi
         FROM stg_influd
     """
 
@@ -179,25 +179,33 @@ def treat_f_notificacao_doenca(
         "SK_DATA_raiox": "sk_data_raiox"
     }
 
-    list_columns_replace_sintomas = [
+    list_columns_sintomas = [
         "febre", "tosse", "calafrio", "dispneia", "garganta", "artralgia",
         "mialgia", "conjuntiv", "coriza", "diarreia", "outro_sin"
     ]
 
-    list_columns_replace_morbidade = [
+    list_columns_morbidade = [
         "pneumopati", "cardiopati", "imunodepre", "hepatica", "neurologic",
         "renal", "sind_down", "metabolica", "puerpera", "obesidade", "out_morbi"
     ]
 
-    tbl_ = tbl.assign(
+    replace_zeros = {
+        k: {2: 0}
+        for k in (
+            list_columns_sintomas
+            + list_columns_morbidade
+        )
+    }
+
+    tbl_ = tbl.replace(replace_zeros).assign(
         qtt_sintomas=lambda df: df.apply(
             sum_value_columns,
-            columns=list_columns_replace_sintomas,
+            columns=list_columns_sintomas,
             axis=1
         ),
         qtt_morbidades=lambda df: df.apply(
             sum_value_columns,
-            columns=list_columns_replace_morbidade,
+            columns=list_columns_morbidade,
             axis=1
         )
     ).rename(
@@ -212,9 +220,9 @@ def treat_f_notificacao_doenca(
         "sk_data_primeiros_sintomas": -1,
         "sk_data_internacao": -1,
         "sk_data_raiox": -1
-    })[select_columns]
+    })
 
-    return tbl_
+    return tbl_[select_columns]
 
 
 def load_f_notificacao_doenca(
