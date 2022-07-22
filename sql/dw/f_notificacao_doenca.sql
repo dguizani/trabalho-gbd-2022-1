@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS dw.f_notificacao_doenca (
-    sk_local_notificacao            INTEGER
-    , sk_local_internacao           INTEGER
-    , sk_local_paciente             INTEGER
-    , sk_paciente                   INTEGER
-    , sk_data_notificacao           INTEGER
-    , sk_data_nascimento            INTEGER
-    , sk_data_primeiros_sintomas    INTEGER
-    , sk_data_internacao            INTEGER
-    , sk_data_raiox                 INTEGER
-    , qtt_sintomas                  INTEGER
-    , qtt_morbidades                INTEGER
+    SK_LOCAL_NOTIFICACAO            INTEGER
+    , SK_LOCAL_INTERNACAO           INTEGER
+    , SK_LOCAL_PACIENTE             INTEGER
+    , SK_PACIENTE                   INTEGER
+    , SK_DATA_NOTIFICACAO           INTEGER
+    , SK_DATA_NASCIMENTO            INTEGER
+    , SK_DATA_PRIMEIROS_SINTOMAS    INTEGER
+    , SK_DATA_INTERNACAO            INTEGER
+    , SK_DATA_RAIOX                 INTEGER
+    , QTT_SINTOMAS                  INTEGER
+    , QTT_MORBIDADES                INTEGER
 )
