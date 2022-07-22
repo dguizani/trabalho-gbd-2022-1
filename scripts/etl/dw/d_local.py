@@ -10,7 +10,7 @@ def extract_d_local(
         SELECT DISTINCT
             uf AS cd_uf
             , UPPER(TRIM(nome_uf)) AS ds_uf
-            , municipio AS cd_municipio
+            , SUBSTR(codigo_municipio_completo, 1, 6) AS cd_municipio
             , UPPER(TRIM(nome_municipio)) AS ds_municipio
         FROM stg_rdb_municipio
     """
