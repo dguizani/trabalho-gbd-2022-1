@@ -23,10 +23,10 @@ def extract_f_notificacao_doenca(
             , co_mu_inte * 1 AS co_mu_inte
             , id_mn_resi * 1 AS id_mn_resi
             , nu_idade_n * 1 AS nu_idade_n
-            , cs_sexo
-            , cs_raca * 1 AS cs_raca
-            , vacina * 1 AS vacina
-            , evolucao * 1 AS evolucao
+            , IFNULL(cs_sexo, 'I') AS cs_sexo
+            , IFNULL(cs_raca, '9') * 1 AS cs_raca
+            , IFNULL(vacina, '9') * 1 AS vacina
+            , IFNULL(evolucao, '9') * 1 AS evolucao
             , dt_notific
             , dt_nasc
             , dt_sin_pri
