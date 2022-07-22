@@ -19,9 +19,9 @@ def extract_f_notificacao_doenca(
         SELECT sg_uf_not * 1 AS sg_uf_not
             , co_uf_inte * 1 AS co_uf_inte
             , sg_uf * 1 AS sg_uf
-            , id_municip
-            , co_mu_inte
-            , id_mn_resi
+            , id_municip * 1 AS id_municip
+            , co_mu_inte * 1 AS co_mu_inte
+            , id_mn_resi * 1 AS id_mn_resi
             , nu_idade_n * 1 AS nu_idade_n
             , cs_sexo
             , cs_raca * 1 AS cs_raca
@@ -50,11 +50,6 @@ def extract_f_notificacao_doenca(
         table_name="d_local",
         con=conn_output,
         schema="dw"
-    ).assign(
-        concat_uf_mun=lambda df: (
-            df.CD_UF.astype("string")
-            + df.CD_MUNICIPIO.astype("string").str.pad(4, fillchar="0")
-        )
     )
 
     tbl_d_paciente = pd.read_sql_table(
@@ -76,18 +71,18 @@ def extract_f_notificacao_doenca(
         right=tbl_d_local,
         how="left",
         left_on=["sg_uf_not", "id_municip"],
-        right_on=["CD_UF", "concat_uf_mun"]
+        right_on=["CD_UF", "CD_MUNICIPIO"]
     ).merge(
         right=tbl_d_local,
         how="left",
         left_on=["co_uf_inte", "co_mu_inte"],
-        right_on=["CD_UF", "concat_uf_mun"],
+        right_on=["CD_UF", "CD_MUNICIPIO"],
         suffixes=("", "_internacao")
     ).merge(
         right=tbl_d_local,
         how="left",
         left_on=["sg_uf", "id_mn_resi"],
-        right_on=["CD_UF", "concat_uf_mun"],
+        right_on=["CD_UF", "CD_MUNICIPIO"],
         suffixes=("", "_paciente")
     ).merge(
         right=tbl_d_paciente,
