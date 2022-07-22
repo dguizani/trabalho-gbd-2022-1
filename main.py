@@ -5,8 +5,8 @@ from scripts.etl.stg.stg_rdb import run_stg_rdb
 from scripts.etl.dw.d_local import run_d_local
 from scripts.etl.dw.d_paciente import run_d_paciente
 from scripts.etl.dw.d_data import run_d_data
-from scripts.etl.dw.d_tipo_morbidade import run_d_tipo_morbidade
-from scripts.etl.dw.d_tipo_sintoma import run_d_tipo_sintoma
+# from scripts.etl.dw.d_tipo_morbidade import run_d_tipo_morbidade
+# from scripts.etl.dw.d_tipo_sintoma import run_d_tipo_sintoma
 from scripts.etl.dw.f_notificacao_doenca import run_f_notificacao_doenca
 
 
@@ -40,9 +40,9 @@ def run_dw(conn_stg, conn_dw):
 
     run_d_data(conn_stg, conn_dw)
 
-    run_d_tipo_morbidade(conn_dw)
+    # run_d_tipo_morbidade(conn_dw)
 
-    run_d_tipo_sintoma(conn_dw)
+    # run_d_tipo_sintoma(conn_dw)
 
     run_f_notificacao_doenca(conn_stg, conn_dw)
 
